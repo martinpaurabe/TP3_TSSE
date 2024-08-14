@@ -34,7 +34,7 @@
     - +:test/**
     - -:test/support
   :include:
-    - fake_function_framework/**
+    - fake_function_framework/vendor/fff
     - inc/**
   :source:
     - src/**
