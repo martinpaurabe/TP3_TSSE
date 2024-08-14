@@ -52,16 +52,13 @@ extern "C" {
 
 /* === Public data type declarations =========================================================== */
 typedef struct {
-    DWORD ComErr;
-
-    DWORD CantBytesRead;
+    uint16_t ComErr;
+    int16_t CantBytesRead;
     time_t Tiempo;
-
-    BYTE EstSciRv;
-
-    BYTE rxBuf[DIM_ADQ];
+    uint8_t EstSciRv;
+    uint8_t rxBuf[DIM_ADQ];
     uint8_t rxCantBytes;
-    BYTE rxParser;
+    uint8_t rxParser;
 
 } TThreadComPort;
 
@@ -81,6 +78,14 @@ void ThreadComPort_Init(void);
  * 
  */
 int8_t ThreadComPort_Update(void);
+
+
+/**
+ * @brief Función para consultar el estado de las banderas de eventos internos ocurridos
+ * 
+ * @return uint8_t Devuelve el estado de los errores ocurridos segun flags definidos en este documento
+ */
+uint8_t ThreadComPort_Error(void) ;
 
 /**
  * @brief Funcion para reiniciar el estado del parser de comunicación

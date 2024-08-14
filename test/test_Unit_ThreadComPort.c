@@ -244,11 +244,26 @@ void test_rx_Cant_Datos_cero(void) {
 void test_rx_Cant_Datos_Maximo(void) {
     BytesDisponibles_fake.return_val = 1;
     ReadBytes_fake.custom_fake = auxiliar_ReadBytes_buffer_sobrecargado;
-    CloseCommPort_fake.custom_fake = 0;
+    CloseCommPort_fake.custom_fake = auxiliar_CloseCommPort;
     TEST_ASSERT_EQUAL(1, ThreadComPort_Update()); // recibio en forma correcta el SFD
     BytesDisponibles_fake.return_val = DIM_ADQ + 1;
     TEST_ASSERT_EQUAL(-1,
                       ThreadComPort_Update()); // recibió en forma incorrecta la cantidad, verifico
                                                // que envia un error por sobrecarga del buffer
 }
+
+// Recibir cantidad de datos disponibles de valor negativo
+/**
+ * @brief Funcion para probar que verifica bien si la cantidad de datos que es mayor al buffer
+ *
+ */
+void test_rx_Datos_Disponibles_Negativo(void) {
+    BytesDisponibles_fake.return_val = -1;
+    ReadBytes_fake.custom_fake = auxiliar_ReadBytes_un_dato;
+    TEST_ASSERT_EQUAL(-1, ThreadComPort_Update()); // recibio en forma correcta el SFD
+    TEST_ASSERT_EQUAL(ERR_PUERTO,
+                      ThreadComPort_Error()); // recibió en forma incorrecta la cantidad, verifico
+                                               // que envia un error por sobrecarga del buffer
+}
+
 /* === End of documentation ==================================================================== */

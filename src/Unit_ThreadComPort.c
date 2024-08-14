@@ -85,6 +85,7 @@ int8_t ThreadComPort_Update(void) {
         ThreadComPort.EstSciRv &= ~ERR_PUERTO;
     } else {
         ThreadComPort.EstSciRv |= ERR_PUERTO;
+        return -1;
     }
 
     return ThreadComPort.rxParser;
@@ -106,5 +107,7 @@ uint8_t ThreadComPort_Error(void) {
 
 void ThreadComPort_Rst(void) {
     ThreadComPort.rxParser = PARSER_PRINC;
+    ThreadComPort.EstSciRv = 0x00;
+    ThreadComPort.Tiempo = time(NULL);
 }
 //---------------------------------------------------------------------------
