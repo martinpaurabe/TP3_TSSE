@@ -20,7 +20,7 @@
 #define BYTE  uint8_t
 #define DWORD uint16_t
 
-//#define BAUDRATE  921600
+// #define BAUDRATE  921600
 #define BAUDRATE 115200
 #define DIM_ADQ  128
 

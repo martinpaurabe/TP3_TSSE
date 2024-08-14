@@ -5,7 +5,7 @@
 #include "Unit_ComPort.h"
 
 #define BC_NUMBERS 8
-//#define EOF  VK_RETURN
+// #define EOF  VK_RETURN
 
 //==============================================================================================================
 // Protocol Constant Definition
