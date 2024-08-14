@@ -30,7 +30,6 @@ SPDX-License-Identifier: MIT
  ** @brief Declaración de las funciones para el manejo del puerto de comunicación
  **/
 
-
 /* === Headers files inclusions ================================================================ */
 #include <time.h>
 #include "Unit_ComPort.h"
@@ -43,7 +42,7 @@ extern "C" {
 
 /* === Public macros definitions =============================================================== */
 //---------------------------------------------------------------------------
-#define ADQ_TIMEOUT      1               // Tiempo de espera para reinciar el parser si no llegan datos
+#define ADQ_TIMEOUT      1 // Tiempo de espera para reinciar el parser si no llegan datos
 #define SEC_TO_DOUBLE(T) ((T) / 86400.0) // T: Tiempo en segundos
 
 //---------------------------------------------------------------------------
@@ -68,47 +67,45 @@ typedef struct {
 
 /**
  * @brief Función para inicializar el puerto de comunicación y el protocolo de bajo nivel
- * 
+ *
  * @return int32_t devuelve 0 si se pudo abrir el puerto 1 si hubo un error
  */
 int32_t ThreadComPort_Init(void);
 
-
 /**
  * @brief Funcion para inicializar la tarea de manejo del puerto de comunicación
- * 
+ *
  */
 int8_t ThreadComPort_Update(void);
 
-
 /**
  * @brief Función para consultar el estado de las banderas de eventos internos ocurridos
- * 
- * @return uint8_t Devuelve el estado de los errores ocurridos segun flags definidos en este documento
+ *
+ * @return uint8_t Devuelve el estado de los errores ocurridos segun flags definidos en este
+ * documento
  */
-uint8_t ThreadComPort_Error(void) ;
+uint8_t ThreadComPort_Error(void);
 
 /**
  * @brief Funcion para reiniciar el estado del parser de comunicación
- * 
+ *
  */
 void ThreadComPort_Rst(void);
 
 /**
  * @brief Función para finalizar el puerto de comunicación y el protocolo de bajo nivel
- * 
+ *
  * @return int32_t devuelve 0 si se pudo cerrar el puerto, 1 si hubo un error
  */
 int32_t ThreadComPort_End(void);
 
-
 /**
- * @brief Funcion a definir por el usuario encargada de manejar los datos recibidos en capas superiores
- * 
+ * @brief Funcion a definir por el usuario encargada de manejar los datos recibidos en capas
+ * superiores
+ *
  * @param buf Puntero al buffer donde se encuentran los datos recibidos
  */
 extern void sciDataReceived(BYTE * buf);
-
 
 /* === End of documentation ==================================================================== */
 
@@ -117,5 +114,3 @@ extern void sciDataReceived(BYTE * buf);
 #endif
 
 #endif /* UNIT_THREADCOMPORTH */
-
-

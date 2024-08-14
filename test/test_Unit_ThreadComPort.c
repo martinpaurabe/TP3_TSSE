@@ -67,16 +67,16 @@ bool sciCalled = false;
 
 /* === Private function implementation ========================================================= */
 
-//Funciones auxiliares para el puerto COM
+// Funciones auxiliares para el puerto COM
 int32_t Auxiliar_OpenCommPort(uint32_t Baudios) {
-    return 0;  //Devuelve 0 quiere decir que pudo abrir el puerto
+    return 0; // Devuelve 0 quiere decir que pudo abrir el puerto
 }
 
 int32_t auxiliar_CloseCommPort(void) {
-    return 0; //simulo que siempre puedo cerrar el puerto
-}; // Cierra la comunicacion
+    return 0; // simulo que siempre puedo cerrar el puerto
+};            // Cierra la comunicacion
 
-//Funciones Auxiliares para simular entradas de datos desde el puerto COM
+// Funciones Auxiliares para simular entradas de datos desde el puerto COM
 int32_t auxiliar_ReadBytes_sin_dato(void * Buffer, int n) {
 
     uint8_t msg_seq[] = {SFD, 0, EOFCOM};
@@ -113,8 +113,7 @@ int32_t auxiliar_ReadBytes_EOFCOM_incorrecto(void * Buffer, int n) {
     return 1;
 };
 
-
-//Función auxiliar para simular que se solicitó el procesamiento del mensaje en layer superior
+// Función auxiliar para simular que se solicitó el procesamiento del mensaje en layer superior
 void sciDataReceived(BYTE * buf) {
     sciCalled = true;
 };
@@ -154,12 +153,11 @@ void tearDown(void) {
 void suittearDown(void) {
 }
 
-
 /**
  * @brief Funcion para testear la inicialización del puerto y el protocolo
- * 
+ *
  */
-void test_rx_msg_inicializar_puerto(void){
+void test_rx_msg_inicializar_puerto(void) {
     OpenCommPort_fake.custom_fake = Auxiliar_OpenCommPort;
     TEST_ASSERT_EQUAL(0, ThreadComPort_Init()); // recibio en forma correcta el SFD
 }
@@ -273,14 +271,14 @@ void test_rx_Datos_Disponibles_Negativo(void) {
     TEST_ASSERT_EQUAL(-1, ThreadComPort_Update()); // recibio en forma correcta el SFD
     TEST_ASSERT_EQUAL(ERR_PUERTO,
                       ThreadComPort_Error()); // recibió en forma incorrecta la cantidad, verifico
-                                               // que envia un error por sobrecarga del buffer
+                                              // que envia un error por sobrecarga del buffer
 }
 
 /**
  * @brief Funcion para testear la finalización del puerto y el protocolo
- * 
+ *
  */
-void test_rx_msg_finalizar_puerto(void){
+void test_rx_msg_finalizar_puerto(void) {
     CloseCommPort_fake.custom_fake = auxiliar_CloseCommPort;
     TEST_ASSERT_EQUAL(0, ThreadComPort_End()); // recibio en forma correcta el SFD
 }
