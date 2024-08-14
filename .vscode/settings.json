@@ -2,7 +2,7 @@
     "editor.codeActionsOnSave": {
         "source.fixAll": "explicit"
     },
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "[c]": {
         "editor.defaultFormatter": "xaver.clang-format",
         "editor.wordBasedSuggestions": "off",
