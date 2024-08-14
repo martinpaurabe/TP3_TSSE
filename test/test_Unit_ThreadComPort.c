@@ -67,6 +67,7 @@ bool sciCalled = false;
 
 /* === Private function implementation ========================================================= */
 
+//Funciones auxiliares para el puerto COM
 int32_t Auxiliar_OpenCommPort(uint32_t Baudios) {
     return 0;
 }
@@ -75,6 +76,7 @@ void auxiliar_CloseCommPort(void) {
     return;
 }; // Cierra la comunicacion
 
+//Funciones Auxiliares para simular entradas de datos desde el puerto COM
 int32_t auxiliar_ReadBytes_sin_dato(void * Buffer, int n) {
 
     uint8_t msg_seq[] = {SFD, 0, EOFCOM};
@@ -111,9 +113,12 @@ int32_t auxiliar_ReadBytes_EOFCOM_incorrecto(void * Buffer, int n) {
     return 1;
 };
 
+
+//Función auxiliar para simular que se solicitó el procesamiento del mensaje en layer superior
 void sciDataReceived(BYTE * buf) {
     sciCalled = true;
 };
+
 /* === Public function implementation ========================================================== */
 
 /**
