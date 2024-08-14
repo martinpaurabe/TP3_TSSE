@@ -55,7 +55,7 @@ int main(void) {
 
     int rxv;
 
-    printf("Inicia el programa\n");
+    printf("Inicia el programa...\n");
     ThreadComPort_Init();
     while (1) {
         rxv = ThreadComPort_Update();
