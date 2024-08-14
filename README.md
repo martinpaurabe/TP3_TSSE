@@ -37,14 +37,14 @@ Para correr las pruebas del proyecto se utiliza el siguiente comando:
 Para generar el proyecto de ceedling:
 
 ```
-ceedling new . 
+ceedling new .
 
 ```
 
 Para ejecutar las pruebas diseñadas en test_leds.c:
 
 ```
-ceedling        
+ceedling
 
 ```
 Para ejecutar el informa de covertura
