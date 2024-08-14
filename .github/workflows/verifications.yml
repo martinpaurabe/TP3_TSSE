@@ -2,9 +2,9 @@ name: Validations
 
 on:
   push:
-  
+
   pull_request:
-    branches: 
+    branches:
         [main]
 
 permissions:
