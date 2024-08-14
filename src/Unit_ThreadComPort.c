@@ -11,11 +11,11 @@ enum { PARSER_PRINC, PARSER_LENGTH, PARSER_DATA, PARSER_EOF };
 static TThreadComPort ThreadComPort;
 //---------------------------------------------------------------------------
 
-void ThreadComPort_Init(void) {
-    OpenCommPort(115200);
+int32_t ThreadComPort_Init(void) {
     ThreadComPort.rxParser = PARSER_PRINC;
     ThreadComPort.EstSciRv = 0x00;
     ThreadComPort.Tiempo = time(NULL);
+    return OpenCommPort(115200);
 }
 //---------------------------------------------------------------------------
 
@@ -92,12 +92,6 @@ int8_t ThreadComPort_Update(void) {
 }
 //---------------------------------------------------------------------------
 
-void ThreadComPort_End(void) {
-    CloseCommPort();
-    ThreadComPort.rxParser = PARSER_PRINC;
-}
-//---------------------------------------------------------------------------
-
 uint8_t ThreadComPort_Error(void) {
     uint8_t errorState = ThreadComPort.EstSciRv;
     ThreadComPort.EstSciRv = 0x00;
@@ -109,5 +103,11 @@ void ThreadComPort_Rst(void) {
     ThreadComPort.rxParser = PARSER_PRINC;
     ThreadComPort.EstSciRv = 0x00;
     ThreadComPort.Tiempo = time(NULL);
+}
+//---------------------------------------------------------------------------
+
+int32_t ThreadComPort_End(void) {
+    ThreadComPort.rxParser = PARSER_PRINC;
+    return CloseCommPort();
 }
 //---------------------------------------------------------------------------

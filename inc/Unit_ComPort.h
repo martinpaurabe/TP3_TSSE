@@ -33,7 +33,7 @@
 //---------------------------------------------------------------------------
 
 int32_t OpenCommPort(uint32_t Baudios); //Abre la comunicacion
-void CloseCommPort(void);               //Cierra la comunicacion
+int32_t CloseCommPort(void);               //Cierra la comunicacion
 
 bool ComAbierto(void);                  //Devuelve 1 si hay un puerto abierto
 int32_t ComNum(void);                   //Devuelve el numero del puerto COM abierto

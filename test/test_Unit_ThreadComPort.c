@@ -69,11 +69,11 @@ bool sciCalled = false;
 
 //Funciones auxiliares para el puerto COM
 int32_t Auxiliar_OpenCommPort(uint32_t Baudios) {
-    return 0;
+    return 0;  //Devuelve 0 quiere decir que pudo abrir el puerto
 }
 
-void auxiliar_CloseCommPort(void) {
-    return;
+int32_t auxiliar_CloseCommPort(void) {
+    return 0; //simulo que siempre puedo cerrar el puerto
 }; // Cierra la comunicacion
 
 //Funciones Auxiliares para simular entradas de datos desde el puerto COM
@@ -152,6 +152,16 @@ void tearDown(void) {
  *
  */
 void suittearDown(void) {
+}
+
+
+/**
+ * @brief Funcion para testear la inicialización del puerto y el protocolo
+ * 
+ */
+void test_rx_msg_inicializar_puerto(void){
+    OpenCommPort_fake.custom_fake = Auxiliar_OpenCommPort;
+    TEST_ASSERT_EQUAL(0, ThreadComPort_Init()); // recibio en forma correcta el SFD
 }
 
 // Recibir el mensaje con el formato esperado y procesarlo correctamente
@@ -264,6 +274,15 @@ void test_rx_Datos_Disponibles_Negativo(void) {
     TEST_ASSERT_EQUAL(ERR_PUERTO,
                       ThreadComPort_Error()); // recibió en forma incorrecta la cantidad, verifico
                                                // que envia un error por sobrecarga del buffer
+}
+
+/**
+ * @brief Funcion para testear la finalización del puerto y el protocolo
+ * 
+ */
+void test_rx_msg_finalizar_puerto(void){
+    CloseCommPort_fake.custom_fake = auxiliar_CloseCommPort;
+    TEST_ASSERT_EQUAL(0, ThreadComPort_End()); // recibio en forma correcta el SFD
 }
 
 /* === End of documentation ==================================================================== */

@@ -69,8 +69,9 @@ typedef struct {
 /**
  * @brief Función para inicializar el puerto de comunicación y el protocolo de bajo nivel
  * 
+ * @return int32_t devuelve 0 si se pudo abrir el puerto 1 si hubo un error
  */
-void ThreadComPort_Init(void);
+int32_t ThreadComPort_Init(void);
 
 
 /**
@@ -92,6 +93,14 @@ uint8_t ThreadComPort_Error(void) ;
  * 
  */
 void ThreadComPort_Rst(void);
+
+/**
+ * @brief Función para finalizar el puerto de comunicación y el protocolo de bajo nivel
+ * 
+ * @return int32_t devuelve 0 si se pudo cerrar el puerto, 1 si hubo un error
+ */
+int32_t ThreadComPort_End(void);
+
 
 /**
  * @brief Funcion a definir por el usuario encargada de manejar los datos recibidos en capas superiores

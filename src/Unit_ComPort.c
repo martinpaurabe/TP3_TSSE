@@ -62,15 +62,20 @@ int32_t OpenCommPort(unsigned int Baudios)
 //---------------------------------------------------------------------------
 
 
-void CloseCommPort(void)
+int32_t CloseCommPort(void)
 {
     if(!serial_port)       // if already closed, return
-      return;
+      return 0;
 
-    if(close(serial_port) != 0) // CloseHandle is non-zero on success
+    if(close(serial_port) != 0){
       m_CommOpen = false;
-    else
+      return 0;
+    } // CloseHandle is non-zero on success
+    else{
       printf("Error, no se pudo cerrar el puerto");
+      return -1;
+
+    }
 }
 //---------------------------------------------------------------------------
 
