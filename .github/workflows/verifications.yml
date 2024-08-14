@@ -24,6 +24,8 @@ jobs:
           ruby-version: "2.7"
       - name: Install Ceedling
         run: gem install ceedling
+      - name: Install Frame Function Frameworks
+        run: git clone --recurse https://github.com/ElectronVector/fake_function_framework.git
       - name: Install GCov Reporter
         run: pip install gcovr
       - name: Run Format Validations
