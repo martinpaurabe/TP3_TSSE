@@ -34,6 +34,7 @@
     - +:test/**
     - -:test/support
   :include:
+    - fake_function_framework/**
     - inc/**
   :source:
     - src/**
@@ -102,5 +103,6 @@
     - stdout_pretty_tests_report
     - module_generator
     - gcov
+    - fake_function_framework
     - junit_tests_report
 ...

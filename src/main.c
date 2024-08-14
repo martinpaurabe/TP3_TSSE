@@ -29,6 +29,7 @@ SPDX-License-Identifier: MIT
 
 /* === Headers files inclusions =============================================================== */
 #include "main.h"
+#include "Unit_ThreadComPort.h"
 
 /* === Macros definitions ====================================================================== */
 
@@ -51,7 +52,14 @@ SPDX-License-Identifier: MIT
  * @return int
  */
 int main(void) {
+
+    int rxv;
+
     printf("Inicia el programa\n");
+    ThreadComPort_Init();
+    while (1) {
+        rxv = ThreadComPort_Update();
+    }
     return 0;
 }
 
